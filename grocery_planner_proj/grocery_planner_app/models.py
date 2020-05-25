@@ -4,17 +4,10 @@ import re
 class UserManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
-        email_checker = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if not email_checker.match(postData['email']):
-            errors['email'] = 'Must be a valid email'
-        if postData['pass'] != postData['confirm']:
+        if postData['pw'] != postData['confpw']:
             errors['pass'] = 'Nope, your passwords did not match. Try again.'
-        return errors
-    def login_validator(self, postData):
-        errors = {}
-        email_checker = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if not email_checker.match(postData['email']):
-            errors['email'] = 'Must be a valid email'
+        if len(postData['user_name']) < 5:
+            errors['user'] = 'User name must be more than 5 characters'
         return errors
 
 class User(models.Model):
