@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE Grocery Planner</title>
+    <title>Success!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<body>
-    <div>
-        <a href="/logout">Logout</a>
-        <h1>Welcome {{request.session.user}}</h1>
 
-        <div>
+<body>
+    <div id='wrap'>
+        <a href="/logout">Logout</a>
+        <h1>Welcome to {{request.session.user}}'s Wall!</h1>
+
+        <div id='write'>
+            <h2>Write a Post:</h2>
+            <form action="/process_message" method=POST>
+                {% csrf_token %}
+                <input type="text" name='mess'>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+
+        <div id='posts'>
+            {% for post in wall_messages %}
+            <div class='one_post'>
+                {% if request.session.id is post.poster.id %}
+                <a href="/delete/{{post.id}}">Delete</a>
+                <a href="/edit/{{post.id}}">Edit</a>
+                {% endif %}
+                {{post.id}}
+                <p class='post'>{{post.message}}</p>
+                <p class='poster'>By: <a href="/user_profile/{{post.poster.id}}">{{post.poster.first_name}} {{post.poster.last_name}}</a></p>
+                <a href="/like/{{post.id}}">Like Post</a>
+                <p>{{ post.user_likes.count }}</p>
+                {% for poster in post.user_likes.all %}
+                <h6>{{poster.first_name}} {{poster.last_name}} likes this.</h6>
+                {% endfor %}
+                <form action="/add_comment/{{post.id}}" method=POST>
+                    {% csrf_token %}
+                    Comment: <input type="text" name='comment'>
+                    <input type="submit" value='submit'>
+                </form>
+                {% for comment in post.post_comments.all %}
+                    <p>{{comment.comment}}</p>
+                    <p>poster: {{comment.poster.first_name}} {{comment.poster.last_name}}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
 </body>
+
 </html>
