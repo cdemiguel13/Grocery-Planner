@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success!</title>
+    <title>{{request.session.user}}'s Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -49,6 +49,18 @@
                 {% endfor %}
             </div>
             {% endfor %}
+            
+            <div>
+            <h1>Add Item to Grocery List</h1>
+            <form action="/add_item" method=POST>
+                {% csrf_token %}
+            <input type="text" name='item' value=''>
+            <input type="submit" value='Add to list'>
+            {% for item in grocery_list %}
+            <p> <a href="/remove/{{item.id}}">{{item.item}}</a></p>
+            {% endfor %}
+            </form>
+            </div>
         </div>
 
     </div>

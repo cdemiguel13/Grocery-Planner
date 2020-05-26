@@ -13,5 +13,8 @@ urlpatterns = [
     path('like/<int:id>', views.add_like),
     path('delete/<int:id>', views.destroy),
     path('edit/<int:id>', views.edit_page),
-    path('process_edit/<int:id>', views.process_edit)
+    path('process_edit/<int:id>', views.process_edit),
+    path('add_item', views.add_item),
+    path('remove/<int:id>', views.remove_item), 
+    path('grocery_list', views.grocery_list)
 ]

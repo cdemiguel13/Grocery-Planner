@@ -10,9 +10,10 @@ def success(request):
     if 'user' not in request.session:
         return redirect('/')
     context = {
-        'wall_messages': Wall_Message.objects.all()
+        'wall_messages': Wall_Message.objects.all(),
+        'grocery_list': Grocery_List.objects.all(),
     }
-    return render(request, 'success.html', context)
+    return render(request, 'dashboard.html', context)
 
 def logout(request):
     print(request.session)
@@ -56,6 +57,7 @@ def post_comment(request, id):
     message = Wall_Message.objects.get(id=id)
     Comment.objects.create(comment=request.POST['comment'], poster=poster, wall_message=message)
     return redirect('/success')
+
 def profile(request, id):
     context = {
         'user': User.objects.get(id=id)
@@ -84,3 +86,22 @@ def process_edit(request, id):
     mess_edit.message = request.POST['message']
     mess_edit.save()
     return redirect('/success')
+
+
+# <---- Grocery List --->
+def add_item(request):
+    Grocery_List.objects.create(item=request.POST['item'], creator=User.objects.get(id=request.session['id']))
+    return redirect('/grocery_list')
+
+def remove_item(request,id):
+    delete_item = Grocery_List.objects.get(id=id)
+    delete_item.delete()
+    return redirect('/success')
+
+def grocery_list(request):
+    if 'user' not in request.session:
+        return redirect('/')
+    context = {
+        'grocery_list': Grocery_List.objects.all(),
+    }
+    return render(request, 'success.html', context)

@@ -37,3 +37,9 @@ class Comment(models.Model):
     comment = models.CharField(max_length=255)
     poster = models.ForeignKey(User, related_name='user_comments', on_delete=models.CASCADE)
     wall_message = models.ForeignKey(Wall_Message, related_name="post_comments", on_delete=models.CASCADE)
+
+class Grocery_List(models.Model):
+    item = models.CharField(max_length=50)
+    creator = models.ForeignKey(User, related_name='user_lists', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
