@@ -12,6 +12,7 @@ def success(request):
     context = {
         'wall_messages': Wall_Message.objects.all(),
         'grocery_list': Grocery_List.objects.all(),
+        'current_user': User.objects.get(id=request.session['id'])
     }
     return render(request, 'dashboard.html', context)
 
@@ -44,8 +45,21 @@ def login(request):
             return redirect('/success')
     return redirect('/')
 
+# ------added these methods, needs functionality
+def my_profile(request):
+    id_num = request.session['id']
+    context = {
+        'user': User.objects.get(id=id_num)
+    }
+    return render(request, 'edit_my_profile.html', context)
 
+def meal_plan(request):
+    return render(request, 'meal_plan.html')
 
+def add_recipe(request):
+    return render(request, 'add_recipe.html')
+
+# ------------------------------------------
 
 # <---Wall and comments---->
 def post_mess(request):
@@ -104,4 +118,4 @@ def grocery_list(request):
     context = {
         'grocery_list': Grocery_List.objects.all(),
     }
-    return render(request, 'success.html', context)
+    return render(request, 'grocery.html', context)

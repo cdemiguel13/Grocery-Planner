@@ -1,15 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create List</title>
-</head>
-<body>
-    <form action="/add_item/{{list.id}}" method=POST>
-        {% csrf_token %}
-    <input type="text" name='item' value=''>
-    <input type="submit" value='Add to list'>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grocery Planner</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        {% load static %}
+        <link rel="icon" href="{% static 'images/favicon.png' %}">
+        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+        <!-- ----------------------------------------------- -->
+        <!-- Bootstrap CSS CDN -->
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+        <!-- Our Custom CSS -->
+        <!-- <link rel="stylesheet" href="dashboard.css"> -->
+
+        <!-- Font Awesome JS -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        <!-- ----------------------------------------------- -->
+
+
+    </head>
+    <body>
+        
+        <div class="wrapper" style="background-image: url({% static 'images/coffee-background.jpg' %});">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="text-muted">
+                <div class="sidebar-header text-right">
+                    <h3>Grocery Planner</h3>
+                </div>
+                <ul class="list-unstyled components ">
+                    <li class="active">
+                        <a href="/success">Home</a>
+                    </li>
+                    <li>
+                        <a href="/meal_plan">Meal Plan</a>
+                    </li>
+                    <li>
+                        <a href="/add_recipe">Add Recipe</a>
+                    </li>
+                    <li>
+                        <a href="/grocery_list" active>Grocery List</a>
+                    </li>
+                    <li>
+                        <a href="/my_profile">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="text-danger">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!--Everything that's not in the navbar-->
+            <div id="content" class="max-width container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-left"></i>
+                            <span></span>
+                        </button>
+                    </div>
+                </nav>
+   
+
+
+
+                <!--Main content-->
+                <div class="container-fluid">
+                    <h1 class="display-4 text-center">My Grocery List</h1>
+
+                    <div class="container-fluid">
+                        
+                    </div>
+
+
+
+
+
+                    <!-- Daniel's form -->
+                    <!-- <form action="/add_item/{{list.id}}" method=POST>
+                        {% csrf_token %}
+                    <input type="text" name='item' value=''>
+                    <input type="submit" value='Add to list'>
+                    </form> -->
+                    
+
+                </div>
+            </div>
+
+
+        <!-- ----------------------------------------------- -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+        <!-- ----------------------------------------------- -->
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="{% static 'js/dashboard.js' %}"></script>
+    </body>
+    
 </html>
