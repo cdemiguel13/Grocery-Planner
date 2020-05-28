@@ -23,10 +23,13 @@ body {
     min-height: 100vh;
 }
 
+<<<<<<< HEAD
 #content {
     
 }
 
+=======
+>>>>>>> back_end
 #sidebar.active {
     margin-left: -250px;
 }

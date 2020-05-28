@@ -25,7 +25,11 @@
     </head>
     <body>
         
+<<<<<<< HEAD
         <div class="wrapper" style="background-image: url({% static 'images/coffee-background.jpg' %});">
+=======
+        <div class="wrapper" >
+>>>>>>> back_end
             <!-- Sidebar -->
             <nav id="sidebar" class="text-muted">
                 <div class="sidebar-header text-right">
@@ -33,7 +37,11 @@
                 </div>
                 <ul class="list-unstyled components ">
                     <li class="active">
+<<<<<<< HEAD
                         <a href="#" active>Home</a>
+=======
+                        <a href="/success" active>Home</a>
+>>>>>>> back_end
                     </li>
                     <li>
                         <a href="#">Meal Plans</a>
@@ -42,6 +50,7 @@
                         <a href="#">Add Recipe</a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="#">Grocery List</a>
                     </li>
                     <li>
@@ -49,6 +58,15 @@
                     </li>
                     <li>
                         <a href="#" class="text-danger">Logout</a>
+=======
+                        <a href="/grocery_list">Grocery List</a>
+                    </li>
+                    <li>
+                        <a href="/user_profile/{{request.session.id}}">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="text-danger">Logout</a>
+>>>>>>> back_end
                     </li>
                 </ul>
             </nav>
@@ -64,7 +82,11 @@
                             <span></span>
                         </button>
 
+<<<<<<< HEAD
                         <a href="#" class="text-right text-danger">Logout</a>
+=======
+                        <a href="/logout" class="text-right text-danger">Logout</a>
+>>>>>>> back_end
             
                     </div>
                 </nav></div>
@@ -94,6 +116,7 @@
                         <h4 class="text-center">Discussion Board</h4>
                         <div class="container-fluid" id="dboard">
                             <!--for loop for discussion posts -->
+<<<<<<< HEAD
                             {% for user in users %}
                             <div class="card">
                                 <div class="card-body">
@@ -101,6 +124,15 @@
                                 </div>
                                 <div class="card-footer">
                                    <p class="text-right">-{{ user.first_name }} {{user.last_name}}<!--Poster's Name Here-->Dummy Name</p> 
+=======
+                            {% for post in wall_messages %}
+                            <div class="card">
+                                <div class="card-body">
+                                  <p>{{ post.message }}<!--Poster's comment here--></p>
+                                </div>
+                                <div class="card-footer">
+                                   <p class="text-right">-<a href="/user_profile/{{post.poster.id}}">{{post.poster.first_name}} {{post.poster.last_name}}</a><!--Poster's Name Here--></p> 
+>>>>>>> back_end
                                 </div>
                             </div>
                             {% endfor %}
@@ -142,11 +174,17 @@
         <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
         <!-- <script>
             $(document).ready(function () {
+<<<<<<< HEAD
 
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar').toggleClass('active');
                 });
 
+=======
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+>>>>>>> back_end
             });
         </script> -->
         <!-- ----------------------------------------------- -->

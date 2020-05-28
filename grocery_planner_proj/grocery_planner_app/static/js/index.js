@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> back_end
 $(document).ready(function(){
     // $('[data-toggle="popover"]').popover({
     //     placement : 'bottom',
